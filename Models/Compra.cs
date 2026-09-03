@@ -7,10 +7,10 @@ namespace Loja_e_commerce.Models
     {
         [Key]
         public int Cod_compra { get; set; }
-        [ForeignKey("")]
-        public int Cod_Produto { get; set; }
+        [ForeignKey("Cod_Prod")]
+        public Produto produto { get; set; }
         [NotMapped]
-        public DateOnly data_compra {  get; set; }
+        public DateOnly data_compra { get; set; }
         public float valor_total { get; set; }
     }
 }
