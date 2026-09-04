@@ -1,53 +1,57 @@
-const API_URL = 'https://localhost:7281/api';
+const API_URL_PRODUTOS = 'https://localhost:7281/api/Produtos';
 
-
-function mostrarAba(idAba) {
-    document.querySelectorAll('.aba').forEach(sec => sec.style.display = 'none');
-    document.getElementById(idAba).style.display = 'block';
-}
-
-
+var qtd_produtos = 0
 async function carregarProdutos() {
     try {
-        const response = await fetch(`${API_URL}/Produtos`);
+        const response = await fetch(API_URL_PRODUTOS)
         const produtos = await response.json();
-        
-        const tbody = document.querySelector('#tabelaProdutos tbody');
-        tbody.innerHTML = '';
-        
-        produtos.forEach(p => {
-            tbody.innerHTML += `
+
+        const produtosTable = document.querySelector('#tabelaProdutos tbody')
+
+        produtosTable.innerHTML = '';
+
+        produtos.forEach(produto => {
+            qtd_produtos = qtd_produtos + 1
+            produtosTable.innerHTML += `
                 <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nome}</td>
-                    <td>R$ ${p.preco.toFixed(2)}</td>
-                    <td>${p.quantidadeEstoque}</td>
+                    <td>${produto.Cod_produto}</td>
+                    <td>${produto.name}</td>
+                    <td>${produto.descricao}</td>
+                    <td>${produto.preco}</td>
+                    <td>${produto.qtd_estoque}</td>
                 </tr>
-            `;
+            `
         });
     } catch (erro) {
-        console.error('Erro ao buscar produtos:', erro);
+        console.error('Erro ao buscar produtos: ', erro)
     }
 }
 
-document.getElementById('formProduto').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const novoProduto = {
-        nome: document.getElementById('prodNome').value,
-        descricao: document.getElementById('prodDesc').value,
-        preco: parseFloat(document.getElementById('prodPreco').value),
-        quantidadeEstoque: parseInt(document.getElementById('prodQtd').value)
-    };
+async function cadastrarProdutos() {
+    const nome = document.getElementById("produtoNome").value;
+    const descricao = document.getElementById("produtoDescricao").value;
+    const preco = parseFloat(document.getElementById("produtoPreco").value);
+    const qtd_estoque = parseInt(document.getElementById("produtoEstoque").value);
 
-    await fetch(`${API_URL}/Produtos`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(novoProduto)
-    });
+    const novo_produto = {
+        name: nome,
+        descricao: descricao,
+        preco: preco,
+        qtd_estoque: qtd_estoque
+    }
+    try {
+        const response = await fetch(API_URL_PRODUTOS, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novo_produto)
+        })
 
-    alert('Produto cadastrado com sucesso!');
-    carregarProdutos();
-});
-
-carregarProdutos();
+        const result = await response.json();
+        console.log("Sucesso: ", result)
+    } catch (error) {
+        console.log("Erro: " + error)
+    }
+    await carregarProdutos()
+}

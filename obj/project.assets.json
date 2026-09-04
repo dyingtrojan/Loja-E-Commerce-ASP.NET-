@@ -11752,24 +11752,31 @@
     ]
   },
   "packageFolders": {
-    "/home/dyingtrojan/.nuget/packages/": {}
+    "C:\\Users\\tarde.cetafaju\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dyingtrojan/Documentos/projetos/atividades/Loja-E-Commerce-ASP.NET-/Loja e-commerce.csproj",
+      "projectUniqueName": "E:\\mace\\asdasda\\Loja-E-Commerce-ASP.NET-\\Loja e-commerce.csproj",
       "projectName": "Loja e-commerce",
-      "projectPath": "/home/dyingtrojan/Documentos/projetos/atividades/Loja-E-Commerce-ASP.NET-/Loja e-commerce.csproj",
-      "packagesPath": "/home/dyingtrojan/.nuget/packages/",
-      "outputPath": "/home/dyingtrojan/Documentos/projetos/atividades/Loja-E-Commerce-ASP.NET-/obj/",
+      "projectPath": "E:\\mace\\asdasda\\Loja-E-Commerce-ASP.NET-\\Loja e-commerce.csproj",
+      "packagesPath": "C:\\Users\\tarde.cetafaju\\.nuget\\packages\\",
+      "outputPath": "E:\\mace\\asdasda\\Loja-E-Commerce-ASP.NET-\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/dyingtrojan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\tarde.cetafaju\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -11782,11 +11789,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -11845,7 +11847,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/dyingtrojan/.dotnet/sdk/8.0.406/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

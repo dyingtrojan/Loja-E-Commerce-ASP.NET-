@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce - Eletrônicos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header>
         <h1>Painel E-Commerce</h1>
         <nav>
             <button onclick="mostrarAba('produtos')">Produtos</button>
-            <button onclick="mostrarAba('clientes')">Clientes</button>
+            <a href="html/clientes.html">Clientes</a>
             <button onclick="mostrarAba('compras')">Nova Compra</button>
             <button onclick="mostrarAba('relatorios')">Relatórios</button>
         </nav>
@@ -30,30 +32,28 @@
 
             <table id="tabelaProdutos">
                 <thead>
-                    <tr><th>ID</th><th>Nome</th><th>Preço</th><th>Estoque</th></tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                    </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </section>
 
 
-        <section id="clientes" class="aba" style="display:none;">
-            <h2>Cadastro de Clientes</h2>
-            <form id="formCliente">
-                <input type="text" id="cliNome" placeholder="Nome Completo" required>
-                <input type="text" id="cliEndereco" placeholder="Endereço" required>
-                <input type="text" id="cliTelefone" placeholder="Telefone" required>
-                <input type="email" id="cliEmail" placeholder="E-mail" required>
-                <button type="submit">Cadastrar Cliente</button>
-            </form>
-        </section>
-
 
         <section id="compras" class="aba" style="display:none;">
             <h2>Registrar Nova Compra</h2>
             <form id="formCompra">
-                <select id="selectCliente" required><option value="">Selecione o Cliente</option></select>
-                <select id="selectProduto" required><option value="">Selecione o Produto</option></select>
+                <select id="selectCliente" required>
+                    <option value="">Selecione o Cliente</option>
+                </select>
+                <select id="selectProduto" required>
+                    <option value="">Selecione o Produto</option>
+                </select>
                 <input type="number" id="compraQtd" placeholder="Quantidade" required>
                 <button type="submit">Finalizar Compra</button>
             </form>
@@ -68,4 +68,5 @@
 
     <script src="js/produtos.js"></script>
 </body>
+
 </html>

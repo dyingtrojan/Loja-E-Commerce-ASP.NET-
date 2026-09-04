@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/funcionarios.js"></script>
+</head>
+
+<body onload="carregarFuncionarios()">
+    <section id="funcionarios" class="aba">
+        <h2>Cadastro de Funcionários</h2>
+        <input type="text" id="funcNome" placeholder="Nome Completo" required>
+        <input type="text" id="funcCargo" placeholder="Cargo" required>
+        <input type="number" step="0.01" id="funcSalario" placeholder="Salário" required>
+        <input type="date" id="funcDataNasc" required>
+        <button onclick="cadastrarFuncionario()">Cadastrar Funcionário</button>
+    </section>
+    <div>
+        <table id="tabelaFuncionarios">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Cargo</td>
+                    <td>Salário</td>
+                    <td>Data de Nascimento</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+
+</html>
