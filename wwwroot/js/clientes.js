@@ -1,53 +1,57 @@
-const API_URL = 'https://localhost:7281/api';
+const API_URL_CLIENTES = 'https://localhost:7281/api/Clientes';
 
-
-function mostrarAba(idAba) {
-    document.querySelectorAll('.aba').forEach(sec => sec.style.display = 'none');
-    document.getElementById(idAba).style.display = 'block';
-}
-
+var qtd_clientes = 0
 async function carregarClientes() {
     try {
-        const response = await fetch(`${API_URL}/Clientes`);
-        const Clientes = await response.json();
-        
-        const tbody = document.querySelector('#tabelaClientes tbody');
-        tbody.innerHTML = '';
-        
-        Clientes.forEach(p => {
-            tbody.innerHTML += `
+        const response = await fetch(API_URL_CLIENTES)
+        const clientes = await response.json();
+
+        const ClienteTable = document.querySelector('#tabelaClientes tbody')
+
+        ClienteTable.innerHTML = '';
+
+        clientes.forEach(cliente => {
+            qtd_clientes = qtd_clientes + 1
+            ClienteTable.innerHTML += `
                 <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nome}</td>
-                    <td>${p.endereco}</td>
-                    <td>${p.telefone}</td>
-                    <td>${p.email}</td>
+                    <td>${cliente.Cod_cliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.rua}</td>
+                    <td>${cliente.num_casa}</td>
+                    <td>${cliente.bairro}</td>
                 </tr>
-            `;
+            `
         });
     } catch (erro) {
-        console.error('Erro ao buscar Clientes:', erro);
+        console.error('Erro ao buscar clientes: ', erro)
     }
 }
 
+async function cadastrarCliente() {
+    const nome = document.getElementById("cliNome").value;
+    const rua = document.getElementById("cliRua").value;
+    const num_casa = parseInt(document.getElementById("cliNumCasa").value);
+    const bairro = document.getElementById("cliBairro").value;
 
-document.getElementById('formCliente').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const novoCliente = {
-        nome: document.getElementById('cliNome').value,
-        endereco: document.getElementById('cliEndereco').value,
-        telefone: document.getElementById('cliTelefone').value,
-        email: document.getElementById('cliEmail').value,     
-    };
+    const novo_cliente = {
+        nome: nome,
+        rua: rua,
+        num_casa: num_casa,
+        bairro: bairro
+    }
+    try {
+        const response = await fetch(API_URL_CLIENTES, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novo_cliente)
+        })
 
-    await fetch(`${API_URL}/Clientes`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(novoCliente)
-    });
-
-    alert('Cliente cadastrado com sucesso!');
-    carregarClientes();
-});
-carregarClientes();
+        const result = await response.json();
+        console.log("Sucesso: ", result)
+    } catch (error) {
+        console.log("Erro: " + error)
+    }
+    await carregarClientes()
+}

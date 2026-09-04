@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/estoque.js"></script>
+</head>
+
+<body onload="carregarEstoque()">
+    <section id="estoque" class="aba">
+        <h2>Cadastro de Estoque</h2>
+        <input type="number" id="estCodFuncionario" placeholder="Código do Funcionário" required>
+        <input type="number" id="estCodProduto" placeholder="Código do Produto" required>
+        <button onclick="cadastrarEstoque()">Cadastrar Estoque</button>
+    </section>
+    <div>
+        <table id="tabelaEstoque">
+            <thead>
+                <tr>
+                    <td>ID Estoque</td>
+                    <td>ID Funcionário</td>
+                    <td>ID Produto</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+
+</html>

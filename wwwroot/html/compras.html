@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/compras.js"></script>
+</head>
+
+<body onload="carregarCompras()">
+    <section id="compras" class="aba">
+        <h2>Cadastro de Compras</h2>
+        <input type="number" id="compValorTotal" step="0.01" placeholder="Valor Total" required>
+        <input type="date" id="compDataCompra" required>
+        <button onclick="cadastrarCompra()">Cadastrar Compra</button>
+    </section>
+    <div>
+        <table id="tabelaCompras">
+            <thead>
+                <tr>
+                    <td>ID Compra</td>
+                    <td>Valor Total</td>
+                    <td>Data da Compra</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+
+</html>

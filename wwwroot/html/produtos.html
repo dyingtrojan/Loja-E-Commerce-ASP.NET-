@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/produtos.js"></script>
+</head>
+
+<body onload="carregarProdutos()">
+    <section id="clientes" class="aba">
+        <h2>Cadastro de produtos</h2>
+        <input type="text" id="produtoNome" placeholder="Nome" required>
+        <input type="text" id="produtoDescricao" placeholder="Descrição" required>
+        <input type="number" id="produtoPreco" placeholder="Preço" required>
+        <input type="number" id="produtoEstoque" placeholder="Quantidade de estoque" required>
+        <button onclick="cadastrarProdutos()">Cadastrar Produto</button>
+    </section>
+    <div>
+        <table id="tabelaProdutos">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Preço</td>
+                    <td>Quantidade de estoque</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+
+</html>

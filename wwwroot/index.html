@@ -1,71 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce - Eletrônicos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header>
         <h1>Painel E-Commerce</h1>
         <nav>
-            <button onclick="mostrarAba('produtos')">Produtos</button>
-            <button onclick="mostrarAba('clientes')">Clientes</button>
-            <button onclick="mostrarAba('compras')">Nova Compra</button>
-            <button onclick="mostrarAba('relatorios')">Relatórios</button>
+            <a href="html/produtos.html">Produtos</a>
+            <a href="html/clientes.html">Clientes</a>
+            <a href="html/compras.html">Compras</a>
+            <a href="html/estoque.html">Estoque</a>
+            <a href="html/funcionario.html">Funcionario</a>
         </nav>
     </header>
-
-    <main>
-        <section id="produtos" class="aba">
-            <h2>Gerenciar Produtos (Estoque)</h2>
-            <form id="formProduto">
-                <input type="text" id="prodNome" placeholder="Nome do Produto" required>
-                <input type="text" id="prodDesc" placeholder="Descrição" required>
-                <input type="number" step="0.01" id="prodPreco" placeholder="Preço" required>
-                <input type="number" id="prodQtd" placeholder="Quantidade Estoque" required>
-                <button type="submit">Salvar Produto</button>
-            </form>
-
-            <table id="tabelaProdutos">
-                <thead>
-                    <tr><th>ID</th><th>Nome</th><th>Preço</th><th>Estoque</th></tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </section>
-
-
-        <section id="clientes" class="aba" style="display:none;">
-            <h2>Cadastro de Clientes</h2>
-            <form id="formCliente">
-                <input type="text" id="cliNome" placeholder="Nome Completo" required>
-                <input type="text" id="cliEndereco" placeholder="Endereço" required>
-                <input type="text" id="cliTelefone" placeholder="Telefone" required>
-                <input type="email" id="cliEmail" placeholder="E-mail" required>
-                <button type="submit">Cadastrar Cliente</button>
-            </form>
-        </section>
-
-
-        <section id="compras" class="aba" style="display:none;">
-            <h2>Registrar Nova Compra</h2>
-            <form id="formCompra">
-                <select id="selectCliente" required><option value="">Selecione o Cliente</option></select>
-                <select id="selectProduto" required><option value="">Selecione o Produto</option></select>
-                <input type="number" id="compraQtd" placeholder="Quantidade" required>
-                <button type="submit">Finalizar Compra</button>
-            </form>
-        </section>
-
-        <section id="relatorios" class="aba" style="display:none;">
-            <h2>Relatórios de Vendas</h2>
-            <button onclick="carregarRelatorioVendas()">Carregar Vendas por Cliente</button>
-            <div id="conteudoRelatorio"></div>
-        </section>
-    </main>
-
-    <script src="js/produtos.js"></script>
 </body>
+
 </html>

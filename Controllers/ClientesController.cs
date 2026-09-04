@@ -23,41 +23,85 @@ namespace Loja_e_commerce.Controllers
 
         // GET: api/Clientes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetCliente()
+        public async Task<IActionResult> GetCliente()
         {
-          if (_context.Cliente == null)
-          {
-              return NotFound();
-          }
-            return await _context.Cliente.ToListAsync();
+            try
+            {
+                if (_context.Cliente == null)
+                {
+                    return NotFound(new { mensagem = "DbSet 'Cliente' não encontrado no DbContext." });
+                }
+
+                var clientes = await _context.Cliente.ToListAsync();
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                // Captura o erro real do SQL/Entity Framework para não retornar HTML da IIS
+                return StatusCode(500, new
+                {
+                    erro = "Erro interno ao buscar clientes.",
+                    detalhe = ex.Message,
+                    innerException = ex.InnerException?.Message
+                });
+            }
         }
 
         // GET: api/Clientes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(int id)
+        public async Task<IActionResult> GetCliente(int id)
         {
-          if (_context.Cliente == null)
-          {
-              return NotFound();
-          }
-            var cliente = await _context.Cliente.FindAsync(id);
-
-            if (cliente == null)
+            try
             {
-                return NotFound();
-            }
+                if (_context.Cliente == null)
+                {
+                    return NotFound();
+                }
 
-            return cliente;
+                var cliente = await _context.Cliente.FindAsync(id);
+
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(cliente);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { erro = ex.Message });
+            }
+        }
+
+        // POST: api/Clientes
+        [HttpPost]
+        public async Task<IActionResult> PostCliente(Cliente cliente)
+        {
+            try
+            {
+                if (_context.Cliente == null)
+                {
+                    return Problem("Entity set 'AppDbContext.Cliente' é nulo.");
+                }
+
+                _context.Cliente.Add(cliente);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction(nameof(GetCliente), new { id = cliente.Cod_cliente }, cliente);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { erro = "Erro ao cadastrar no banco de dados.", detalhe = ex.InnerException?.Message ?? ex.Message });
+            }
         }
 
         // PUT: api/Clientes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
             if (id != cliente.Cod_cliente)
             {
-                return BadRequest();
+                return BadRequest("O ID enviado na URL não coincide com o ID do corpo.");
             }
 
             _context.Entry(cliente).State = EntityState.Modified;
@@ -77,23 +121,12 @@ namespace Loja_e_commerce.Controllers
                     throw;
                 }
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { erro = ex.Message });
+            }
 
             return NoContent();
-        }
-
-        // POST: api/Clientes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
-        {
-          if (_context.Cliente == null)
-          {
-              return Problem("Entity set 'AppDbContext.Cliente'  is null.");
-          }
-            _context.Cliente.Add(cliente);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCliente", new { id = cliente.Cod_cliente }, cliente);
         }
 
         // DELETE: api/Clientes/5
