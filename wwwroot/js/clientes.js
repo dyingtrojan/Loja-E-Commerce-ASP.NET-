@@ -1,5 +1,4 @@
-const API_URL = 'https://localhost:7281/api';
-
+const API_URL_CLIENTES = 'https://localhost:7281/api/Clientes';
 
 function mostrarAba(idAba) {
     document.querySelectorAll('.aba').forEach(sec => sec.style.display = 'none');
@@ -8,7 +7,7 @@ function mostrarAba(idAba) {
 
 async function carregarClientes() {
     try {
-        const response = await fetch(`${API_URL}/Clientes`);
+        const response = await fetch(`${API_URL_CLIENTES}`);
         const Clientes = await response.json();
         
         const tbody = document.querySelector('#tabelaClientes tbody');
@@ -41,7 +40,7 @@ document.getElementById('formCliente').addEventListener('submit', async (e) => {
         email: document.getElementById('cliEmail').value,     
     };
 
-    await fetch(`${API_URL}/Clientes`, {
+    await fetch(`${API_URL_CLIENTES}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novoCliente)

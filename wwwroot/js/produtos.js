@@ -1,4 +1,4 @@
-const API_URL = 'https://localhost:7281/api';
+const API_URL_PRODUTOS = 'https://localhost:7281/api/Produtos';
 
 
 function mostrarAba(idAba) {
@@ -9,7 +9,7 @@ function mostrarAba(idAba) {
 
 async function carregarProdutos() {
     try {
-        const response = await fetch(`${API_URL}/Produtos`);
+        const response = await fetch(`${API_URL_PRODUTOS}`);
         const produtos = await response.json();
         
         const tbody = document.querySelector('#tabelaProdutos tbody');
@@ -40,7 +40,7 @@ document.getElementById('formProduto').addEventListener('submit', async (e) => {
         quantidadeEstoque: parseInt(document.getElementById('prodQtd').value)
     };
 
-    await fetch(`${API_URL}/Produtos`, {
+    await fetch(`${API_URL_PRODUTOS}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novoProduto)
